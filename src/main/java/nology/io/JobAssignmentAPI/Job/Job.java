@@ -26,7 +26,7 @@ public class Job {
   @Column
   @JsonFormat(pattern = "yyyy-MM-dd")
   LocalDate startDate;
-  
+
   @Column
   @JsonFormat(pattern = "yyyy-MM-dd")
   LocalDate endDate;
@@ -35,10 +35,11 @@ public class Job {
   @JoinColumn(name = "temp_id", nullable = true)
   Temp temp;
 
-  public Job(String name, LocalDate startDate, LocalDate endDate) {
+  public Job(String name, LocalDate startDate, LocalDate endDate, Temp temp) {
     this.name = name;
     this.startDate = startDate;
     this.endDate = endDate;
+    
   }
 
   public Job() {

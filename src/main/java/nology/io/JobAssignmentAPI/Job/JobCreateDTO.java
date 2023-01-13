@@ -1,6 +1,6 @@
 package nology.io.JobAssignmentAPI.Job;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 import jakarta.validation.constraints.NotBlank;
 
@@ -8,9 +8,42 @@ public class JobCreateDTO {
   @NotBlank
   String name;
 
-  // yyyy-MM-dd
-  Date startDate;
+  LocalDate startDate;
+
+  LocalDate endDate;
+
+  Long temp; // Need to figure out how to assign this value to the database
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public LocalDate getStartDate() {
+    return startDate;
+  }
+
+  public void setStartDate(LocalDate startDate) {
+    this.startDate = startDate;
+  }
+
+  public LocalDate getEndDate() {
+    return endDate;
+  }
+
+  public void setEndDate(LocalDate endDate) {
+    this.endDate = endDate;
+  }
+
+  public Long getTemp() {
+    return temp;
+  }
+
+  public void setTemp(Long temp) {
+    this.temp = temp;
+  }
   
-  // yyyy-MM-dd
-  Date endDate;
 }
