@@ -1,6 +1,5 @@
 package nology.io.JobAssignmentAPI.Job;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,28 +7,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
-import nology.io.JobAssignmentAPI.Temp.TempService;
+import nology.io.JobAssignmentAPI.Temp.Temp;
+import nology.io.JobAssignmentAPI.Temp.TempRepository;
 
 @Service
 @Transactional
 public class JobService {
   @Autowired
-  private JobRepository repository;
+  private JobRepository jobRepository;
+
 
   public Job create(JobCreateDTO data) {
     String cleanedName = data.getName().trim();
-    Job newJob = new Job(cleanedName, data.getStartDate(), data.getEndDate(), TempService.findOne(data.getTemp()).get());
-
-    this.repository.save(newJob);
+    Job newJob = new Job(cleanedName, data.getStartDate(), data.getEndDate());
 
     return newJob;
   }
 
   public List<Job> all() {
-    return this.repository.findAll();
+    return this.jobRepository.findAll();
   }
 
   public Optional<Job> findOne(Long JobId) {
-    return this.repository.findById(JobId);
+    return this.jobRepository.findById(JobId);
   }
 }

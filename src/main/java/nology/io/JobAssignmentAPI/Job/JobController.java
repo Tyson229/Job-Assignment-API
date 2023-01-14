@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,6 +23,17 @@ public class JobController {
 
   @Autowired
   private JobService service;
+  
+  @PostMapping
+  public ResponseEntity<Job> create(@Valid @RequestBody JobCreateDTO data) {
+
+    Job createdJob = this.service.create(data);
+
+    return new ResponseEntity<Job>(createdJob, HttpStatus.CREATED);
+  }
+
+  // @PatchMapping("/{id}")
+  // public ResponseEntity<Job> update()
 
   @GetMapping
   public ResponseEntity<List<Job>> all() {
@@ -40,11 +52,5 @@ public class JobController {
 
     return new ResponseEntity<Job>(maybeJob.get(), HttpStatus.OK);
   }
-
-  @PostMapping
-  public ResponseEntity<Job> create(@Valid @RequestBody JobCreateDTO data) {
-    Job createdJob = this.service.create(data);
-
-    return new ResponseEntity<Job>(createdJob, HttpStatus.CREATED);
-  }
+ 
 }

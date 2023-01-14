@@ -1,5 +1,6 @@
 package nology.io.JobAssignmentAPI.Temp;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Column;
@@ -25,7 +26,7 @@ public class Temp {
   String lastName;
 
   @OneToMany(mappedBy = "temp")
-  List<Job> jobs;
+  List<Job> jobs = new ArrayList<Job>();
 
   public Temp() {}
   

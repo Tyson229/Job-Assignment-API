@@ -26,7 +26,7 @@ public class TempController {
     public ResponseEntity<List<Temp>> all(){
       List<Temp> allTemps = this.service.all();
       
-      return new ResponseEntity<>(allTemps, HttpStatus.OK);
+      return new ResponseEntity<List<Temp>>(allTemps, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")

@@ -1,9 +1,6 @@
 package nology.io.JobAssignmentAPI.Job;
 
 import java.time.LocalDate;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,22 +21,19 @@ public class Job {
   String name;
 
   @Column
-  @JsonFormat(pattern = "yyyy-MM-dd")
   LocalDate startDate;
 
   @Column
-  @JsonFormat(pattern = "yyyy-MM-dd")
   LocalDate endDate;
 
   @ManyToOne
   @JoinColumn(name = "temp_id", nullable = true)
   Temp temp;
 
-  public Job(String name, LocalDate startDate, LocalDate endDate, Temp temp) {
+  public Job(String name, LocalDate startDate, LocalDate endDate) {
     this.name = name;
     this.startDate = startDate;
     this.endDate = endDate;
-    
   }
 
   public Job() {
