@@ -2,6 +2,7 @@ package nology.io.JobAssignmentAPI.Job;
 
 import java.time.LocalDate;
 
+import io.micrometer.common.lang.Nullable;
 //import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.NotBlank;
 

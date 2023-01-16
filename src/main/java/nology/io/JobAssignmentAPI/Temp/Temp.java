@@ -3,6 +3,8 @@ package nology.io.JobAssignmentAPI.Temp;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,10 +28,12 @@ public class Temp {
   String lastName;
 
   @OneToMany(mappedBy = "temp")
+  @JsonIgnoreProperties("temp")
   List<Job> jobs = new ArrayList<Job>();
 
-  public Temp() {}
-  
+  public Temp() {
+  }
+
   public Temp(String firstName, String lastName) {
     this.firstName = firstName;
     this.lastName = lastName;
