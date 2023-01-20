@@ -2,19 +2,22 @@ package nology.io.JobAssignmentAPI.Job;
 
 import java.time.LocalDate;
 
-//import jakarta.annotation.Nullable;
-import jakarta.validation.constraints.NotBlank;
+//import io.micrometer.common.lang.Nullable;
+import jakarta.annotation.Nullable;
 
-public class JobCreateDTO {
-  @NotBlank
+
+public class JobUpdateDTO {
+  @Nullable
   String name;
-
+  
+  @Nullable
   LocalDate startDate;
 
+  @Nullable
   LocalDate endDate;
 
-  Long temp; // Need to figure out how to assign this value to the database
-  // Create a new record with data which is a foreign key from another table
+  @Nullable
+  Long temp;
 
   public String getName() {
     return name;

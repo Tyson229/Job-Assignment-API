@@ -32,8 +32,12 @@ public class JobController {
     return new ResponseEntity<Job>(createdJob, HttpStatus.CREATED);
   }
 
-  // @PatchMapping("/{id}")
-  // public ResponseEntity<Job> update()
+  @PatchMapping("/{id}")
+  public ResponseEntity<Job> assignTemp(@PathVariable Long id, @Valid @RequestBody JobUpdateDTO data) {
+    Job updatedJob = this.service.updateJob(id, data);
+
+    return new ResponseEntity<Job>(updatedJob, HttpStatus.OK);  
+  }
 
   @GetMapping
   public ResponseEntity<List<Job>> all() {
