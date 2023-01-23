@@ -3,9 +3,9 @@ package nology.io.JobAssignmentAPI.Job;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+import org.hibernate.validator.internal.util.stereotypes.Lazy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,8 +19,12 @@ public class JobService {
   @Autowired
   private JobRepository jobRepository;
 
-  @Autowired
   private TempService tempService;
+
+  @Autowired
+  public JobService (TempService tempService) {
+    this.tempService = tempService;
+  }
 
   public Job create(JobCreateDTO data) {
     if (data.getStartDate().isAfter(data.getEndDate()))
