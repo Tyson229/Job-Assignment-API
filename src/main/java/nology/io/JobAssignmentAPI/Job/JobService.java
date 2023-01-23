@@ -3,6 +3,8 @@ package nology.io.JobAssignmentAPI.Job;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -85,6 +87,15 @@ public class JobService {
 
   return job;
 
+  }
+
+  public List<Job> filter(boolean assigned) {
+    List<Job> filteredJobs;
+    if(assigned)
+      filteredJobs = this.all().stream().filter(job -> job.getTemp() != null).collect(Collectors.toList());
+    else
+     filteredJobs = this.all().stream().filter(job -> job.getTemp() == null).collect(Collectors.toList());
+    return filteredJobs;
   }
 
   private Job assignTemp(Job job, Long tempId) {

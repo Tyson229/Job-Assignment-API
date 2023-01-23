@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -39,7 +41,7 @@ public class JobController {
     return new ResponseEntity<Job>(updatedJob, HttpStatus.OK);  
   }
 
-  @GetMapping
+  @GetMapping("/")
   public ResponseEntity<List<Job>> all() {
     List<Job> allJobs = this.service.all();
 
@@ -55,6 +57,13 @@ public class JobController {
     }
 
     return new ResponseEntity<Job>(maybeJob.get(), HttpStatus.OK);
+  }
+
+  @GetMapping
+  public ResponseEntity<List<Job>> filterByTemps(@RequestParam boolean assigned){
+    List<Job> filteredJobs = this.service.filter(assigned);
+
+    return new ResponseEntity<>(filteredJobs, HttpStatus.OK);
   }
  
 }
